@@ -120,18 +120,23 @@ async function extractColorsFromPage() {
   try {
     const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
 
+    if (!tab?.url || /^(chrome|edge|about|devtools):/.test(tab.url)) {
+      showStatus('このページでは色を抽出できません', true);
+      return;
+    }
+
     const results = await chrome.scripting.executeScript({
       target: { tabId: tab.id },
       function: extractColors,
     });
 
-    if (results && results[0] && results[0].result) {
+    if (results && results[0] && results[0].result && results[0].result.length > 0) {
       displayColorList(results[0].result);
-      showStatus('色の分析が完了しました！');
+    } else {
+      showStatus('色が見つかりませんでした', true);
     }
   } catch (err) {
-    showStatus('色の抽出に失敗しました', true);
-    console.error('Color extraction failed:', err);
+    showStatus('このページでは色を抽出できません', true);
   }
 }
 
