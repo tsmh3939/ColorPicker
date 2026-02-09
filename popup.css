@@ -1,0 +1,379 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-size: 14px;
+  color: #e0e0e0;
+  background: #0a0a0a;
+  min-width: 380px;
+  max-width: 380px;
+}
+
+.container {
+  padding: 24px;
+  background: linear-gradient(165deg, #121212 0%, #1a1a1a 40%, #0d0d0d 100%);
+  min-height: 100%;
+  position: relative;
+}
+
+/* ヘッダー */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 24px;
+}
+
+.header-logo {
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+}
+
+h1 {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  background: linear-gradient(135deg, #d4af37 0%, #f5e6a3 40%, #d4af37 70%, #b8941f 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-align: center;
+}
+
+h2 {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 14px;
+  color: #999;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* セパレーター */
+.separator {
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, #333 30%, #555 50%, #333 70%, transparent 100%);
+  margin-bottom: 24px;
+}
+
+/* アクションボタン */
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 24px;
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px 18px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  position: relative;
+  overflow: hidden;
+  letter-spacing: 0.02em;
+}
+
+.btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.04), transparent);
+  transition: left 0.5s ease;
+}
+
+.btn:hover::before {
+  left: 100%;
+}
+
+.btn:active {
+  transform: scale(0.98);
+}
+
+.btn-icon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 50%, #1a1a1a 100%);
+  color: #d4af37;
+  box-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.4),
+    0 0 0 1px rgba(212, 175, 55, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.03);
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, #222 0%, #333 50%, #222 100%);
+  box-shadow:
+    0 4px 16px rgba(0, 0, 0, 0.5),
+    0 0 0 1px rgba(212, 175, 55, 0.2),
+    0 0 20px rgba(212, 175, 55, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.btn-secondary {
+  background: linear-gradient(135deg, #151515 0%, #222 50%, #151515 100%);
+  color: #b0b0b0;
+  box-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.4),
+    0 0 0 1px rgba(255, 255, 255, 0.04),
+    inset 0 1px 0 rgba(255, 255, 255, 0.02);
+}
+
+.btn-secondary:hover {
+  background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 50%, #1a1a1a 100%);
+  color: #d0d0d0;
+  box-shadow:
+    0 4px 16px rgba(0, 0, 0, 0.5),
+    0 0 0 1px rgba(255, 255, 255, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+/* カラー結果 */
+.color-result {
+  margin-bottom: 20px;
+  padding: 16px;
+  background: linear-gradient(145deg, #161616 0%, #1c1c1c 100%);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.02);
+}
+
+.picked-color {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.color-preview {
+  width: 100%;
+  height: 80px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.4),
+    inset 0 0 30px rgba(0, 0, 0, 0.1);
+}
+
+.color-info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.color-code {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.label {
+  font-weight: 600;
+  min-width: 40px;
+  color: #666;
+  font-size: 12px;
+  letter-spacing: 0.05em;
+}
+
+.color-code input {
+  flex: 1;
+  padding: 8px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 6px;
+  font-family: 'Courier New', monospace;
+  font-size: 13px;
+  background: rgba(0, 0, 0, 0.3);
+  color: #e0e0e0;
+  transition: border-color 0.2s ease;
+}
+
+.color-code input:focus {
+  outline: none;
+  border-color: rgba(212, 175, 55, 0.3);
+}
+
+.copy-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  background: linear-gradient(135deg, #1a1a1a 0%, #252525 100%);
+  color: #d4af37;
+  border: 1px solid rgba(212, 175, 55, 0.15);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.copy-btn .copy-icon,
+.copy-btn .check-icon {
+  position: absolute;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.copy-btn .check-icon {
+  opacity: 0;
+  transform: scale(0.6);
+}
+
+.copy-btn.copied .copy-icon {
+  opacity: 0;
+  transform: scale(0.6);
+}
+
+.copy-btn.copied .check-icon {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.copy-btn.copied {
+  color: #4caf50;
+  border-color: rgba(76, 175, 80, 0.3);
+}
+
+.copy-btn:hover {
+  background: linear-gradient(135deg, #222 0%, #2d2d2d 100%);
+  border-color: rgba(212, 175, 55, 0.3);
+  box-shadow: 0 0 10px rgba(212, 175, 55, 0.08);
+}
+
+.copy-btn:active {
+  transform: scale(0.92);
+}
+
+/* カラーリスト */
+.color-list {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.color-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+  gap: 10px;
+  max-height: 300px;
+  overflow-y: auto;
+  padding: 4px;
+}
+
+.color-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.color-item:hover {
+  transform: scale(1.08);
+}
+
+.color-box {
+  width: 100%;
+  height: 50px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  transition: all 0.25s ease;
+}
+
+.color-item:hover .color-box {
+  box-shadow:
+    0 4px 16px rgba(0, 0, 0, 0.5),
+    0 0 12px rgba(212, 175, 55, 0.08);
+  border-color: rgba(212, 175, 55, 0.2);
+}
+
+.color-label {
+  font-size: 10px;
+  font-family: 'Courier New', monospace;
+  color: #666;
+  text-align: center;
+  word-break: break-all;
+  letter-spacing: 0.03em;
+}
+
+/* ステータス */
+.status {
+  margin-top: 16px;
+  padding: 10px 16px;
+  border-radius: 8px;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 500;
+  animation: slideIn 0.3s ease;
+  letter-spacing: 0.02em;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.status.success {
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(212, 175, 55, 0.05) 100%);
+  color: #d4af37;
+  border: 1px solid rgba(212, 175, 55, 0.2);
+}
+
+.status.error {
+  background: linear-gradient(135deg, rgba(200, 50, 50, 0.1) 0%, rgba(200, 50, 50, 0.05) 100%);
+  color: #e06060;
+  border: 1px solid rgba(200, 50, 50, 0.2);
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* スクロールバー */
+.color-grid::-webkit-scrollbar {
+  width: 6px;
+}
+
+.color-grid::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 3px;
+}
+
+.color-grid::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 3px;
+}
+
+.color-grid::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
